@@ -45,24 +45,24 @@ function GameObject(gameObjectAttributes) {
   this.createdAt = gameObjectAttributes.createdAt;
   this.name = gameObjectAttributes.name;
   this.dimensions = gameObjectAttributes.dimensions;
-}
+};
 
 GameObject.prototype.destroy = function () {
   return `${this.name} was removed from the game.`
-}
+};
 
 // === CharacterStats ===
 
 function CharacterStats(characterStatsAttributes) {
   this.healthPoints = characterStatsAttributes.healthPoints;
   GameObject.call(this, characterStatsAttributes);
-}
+};
 
 CharacterStats.prototype = Object.create(GameObject.prototype);
 
 CharacterStats.prototype.takeDamage = function () {
   return `${this.name} took damage.`;
-}
+};
 
 //=== Humanoid ===
 
@@ -71,14 +71,13 @@ function Humanoid(humanoidAttributes) {
   this.weapons = humanoidAttributes.weapons;
   this.language = humanoidAttributes.language;
   CharacterStats.call(this, humanoidAttributes);
-
-}
+};
 
 Humanoid.prototype = Object.create(CharacterStats.prototype);
 
 Humanoid.prototype.greet = function () {
   return `${this.name} offers a greeting in ${this.language}.`;
-}
+};
 
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
@@ -145,7 +144,64 @@ Humanoid.prototype.greet = function () {
   console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
 */
 
-  // Stretch task: 
-  // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
-  // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
-  // * Create two new objects, one a villain and one a hero and fight it out with methods!
+// Stretch task: 
+// * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
+// * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
+// * Create two new objects, one a villain and one a hero and fight it out with methods!
+// === Villain ===
+function Villain(villainAttributes) {
+
+  Humanoid.call(this, villainAttributes);
+};
+
+Villain.prototype = Object.create(Humanoid.prototype);
+
+Villain.prototype.damageAttack = function () {
+  return ``;
+};
+
+// === Hero ===
+function Hero(heroAttributes) {
+
+  Humanoid.call(this, heroAttributes);
+};
+
+Hero.prototype = Object.create(Humanoid.prototype);
+
+Hero.prototype.destroyAttack = function () {
+  return ``;
+};
+
+const villainFighter = new Villain({
+  createdAt: new Date(),
+  dimensions: {
+    length: 2,
+    width: 2,
+    height: 2,
+  },
+  healthPoints: 100,
+  name: 'Gerhard',
+  team: 'The autistics',
+  weapons: [
+    'Giant Sword',
+    'Shield',
+  ],
+  language: 'React',
+});
+
+const heroWarrior = new Hero({
+  createdAt: new Date(),
+  dimensions: {
+    length: 1,
+    width: 2,
+    height: 4,
+  },
+  healthPoints: 100,
+  name: 'Gustav',
+  team: 'The Heroes',
+  weapons: [
+    'Bow',
+    'Dagger',
+  ],
+  language: 'Python',
+});
