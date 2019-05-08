@@ -150,26 +150,24 @@ Humanoid.prototype.greet = function () {
 // * Create two new objects, one a villain and one a hero and fight it out with methods!
 // === Villain ===
 function Villain(villainAttributes) {
-
   Humanoid.call(this, villainAttributes);
 };
 
 Villain.prototype = Object.create(Humanoid.prototype);
 
 Villain.prototype.damageAttack = function () {
-  return ``;
+  return heroWarrior.healthPoints --;
 };
 
 // === Hero ===
 function Hero(heroAttributes) {
-
   Humanoid.call(this, heroAttributes);
 };
 
 Hero.prototype = Object.create(Humanoid.prototype);
 
 Hero.prototype.destroyAttack = function () {
-  return ``;
+  return villainFighter.healthPoints --;
 };
 
 const villainFighter = new Villain({
@@ -205,3 +203,16 @@ const heroWarrior = new Hero({
   ],
   language: 'Python',
 });
+
+console.log(heroWarrior.destroyAttack());
+
+console.log(heroWarrior.destroyAttack());
+
+console.log(villainFighter.healthPoints);
+
+console.log(villainFighter.damageAttack());
+
+console.log(villainFighter.damageAttack());
+
+console.log(heroWarrior.healthPoints);
+console.log(villainFighter.healthPoints);
