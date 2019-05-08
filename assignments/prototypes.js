@@ -156,7 +156,11 @@ function Villain(villainAttributes) {
 Villain.prototype = Object.create(Humanoid.prototype);
 
 Villain.prototype.damageAttack = function () {
+  if(heroWarrior.healthPoints >= 0) {   
   return heroWarrior.healthPoints --;
+  } else if (heroWarrior.healthPoints <= 0) {
+    return `heroWarrior died !!!`;
+  }
 };
 
 // === Hero ===
@@ -167,6 +171,12 @@ function Hero(heroAttributes) {
 Hero.prototype = Object.create(Humanoid.prototype);
 
 Hero.prototype.destroyAttack = function () {
+  if(villainFighter.healthPoints >= 0) {   
+  return villainFighter.healthPoints --;
+  } else if (villainFighter.healthPoints <= 0) {
+    return `villainFighter died !!!`;
+  }
+  
   return villainFighter.healthPoints --;
 };
 
@@ -177,7 +187,7 @@ const villainFighter = new Villain({
     width: 2,
     height: 2,
   },
-  healthPoints: 100,
+  healthPoints: 3,
   name: 'Gerhard',
   team: 'The autistics',
   weapons: [
@@ -194,7 +204,7 @@ const heroWarrior = new Hero({
     width: 2,
     height: 4,
   },
-  healthPoints: 100,
+  healthPoints: 3,
   name: 'Gustav',
   team: 'The Heroes',
   weapons: [
@@ -204,15 +214,27 @@ const heroWarrior = new Hero({
   language: 'Python',
 });
 
-console.log(heroWarrior.destroyAttack());
 
-console.log(heroWarrior.destroyAttack());
+console.log(villainFighter.damageAttack());
 
-console.log(villainFighter.healthPoints);
+console.log(villainFighter.damageAttack());
+
+console.log(villainFighter.damageAttack());
 
 console.log(villainFighter.damageAttack());
 
 console.log(villainFighter.damageAttack());
 
 console.log(heroWarrior.healthPoints);
+
+console.log(heroWarrior.destroyAttack());
+
+console.log(heroWarrior.destroyAttack());
+
+console.log(heroWarrior.destroyAttack());
+
+console.log(heroWarrior.destroyAttack());
+
+console.log(heroWarrior.destroyAttack());
+
 console.log(villainFighter.healthPoints);
